@@ -120,27 +120,11 @@ class TictactoeMain():
                 if self.isSpaceEmpty(board, i):
                     row, col = self.getPosition(i)
                     board[row][col] = self.HUMAN
-                    score = self.minimax(board, True,depth+1,  alpha, beta)
+                    score = self.minimax(board, True, depth+1,  alpha, beta)
                     board[row][col] = ' '
                     bestScore = min(bestScore, score)
                     beta = min(beta, bestScore)
                     if beta <= alpha:
                         break
             return bestScore
-
-
-    # def main():
-    #     #random_number = random.randint(1, 9)
-    #     #insertLetter(BOARD, COMP, random_number)
-
-    #     while not TictactoeMain.terminalState(TictactoeMain.BOARD):
-    #         TictactoeMain.printBoard(TictactoeMain.BOARD)
-    #         TictactoeMain.playerMove(TictactoeMain.BOARD)
-    #         if not TictactoeMain.terminalState(TictactoeMain.BOARD):
-    #             TictactoeMain.computerMove(TictactoeMain.BOARD)
-    #         else:
-    #             break
-
-    #     TictactoeMain.printBoard(TictactoeMain.BOARD)
-    #     print("Winner is:", TictactoeMain.declareWinner(TictactoeMain.BOARD))
 

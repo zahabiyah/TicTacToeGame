@@ -1,7 +1,6 @@
 import pygame
 import sys
 import TictactoeMain as game
-import time
 
 # Initialize Pygame
 pygame.init()
@@ -54,21 +53,13 @@ def handle_eventsHuman():
             cell_y = (pos[1] - BOARD_Y) // CELL_SIZE
             # Make a move at the clicked position
             if cell_x >= 0 and cell_x < BOARD_SIZE and cell_y >= 0 and cell_y < BOARD_SIZE:
-                position = cell_y * BOARD_SIZE + cell_x + 1
-                game_instance.playerMove(game_instance.BOARD, position)
-                if not game_instance.terminalState(game_instance.BOARD):
-                    print("hello")
-                    game_instance.computerMove(game_instance.BOARD)
+                position = cell_y * BOARD_SIZE + cell_x + 1 
+                if game_instance.isSpaceEmpty(game_instance.BOARD, position):
+                    game_instance.playerMove(game_instance.BOARD, position)
+                    if not game_instance.terminalState(game_instance.BOARD):
+                        game_instance.computerMove(game_instance.BOARD)
             else: 
                 return 
-                
-
-def handle_eventsComp():
-    if not game_instance.terminalState(game_instance.BOARD):
-        game_instance.computerMove(game_instance.BOARD)
-    else:
-        return
-    
              
 # Draw the board
 def draw_board():
@@ -92,8 +83,8 @@ def draw_pieces():
 
 # Main game loop
 gameRunning = True
-
 text = "Welcome to this game of Tic Tac Toe!"
+
 while gameRunning:
     handle_eventsHuman()
     draw_board()
